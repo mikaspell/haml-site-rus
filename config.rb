@@ -53,14 +53,6 @@ end
 #   end
 # end
 
-# activate :deploy do |deploy|
-#   deploy.deploy_method    = :ftp
-#   deploy.host             = 'melkee.ru'
-#   deploy.path             = '/httpdocs/haml.ru'
-#   deploy.user             = 'u4023074'
-#   deploy.password         = '60stPKEc'
-# end
-
 # Build-specific configuration
 configure :build do
 
