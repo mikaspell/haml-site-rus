@@ -1,0 +1,60 @@
+---
+title: Haml
+---
+
+.hero
+  .box.boat
+    %img{:src => "/assets/img/img-hero.png", :alt => "Haml"}/
+    %img.boat-img{:src => "/assets/img/img-hero-boat.png", :alt => "Шаблонизация Хайку"}/
+  .box
+    %h1
+      Красиво, модульно,<br />
+      читаемая разметка:<br />
+      %strong шаблонизация хайку.
+    %p
+      = link_to 'Скачать Haml', '/download.html', {:class => 'btn'}
+      %b
+        Версия: <strong>#{Haml::VERSION}</strong> -
+        %strong= link_to "Что нового?", 'http://haml.info/docs/yardoc/file.CHANGELOG.html'
+
+.sample
+  .box
+    %h2.sample-erb .erb
+    %pre
+      :preserve
+        &lt;<b class="tag">section</b> class<b class="pun">=”</b>container<b class="pun">”</b>&gt;
+          &lt;<b class="tag">h1</b>&gt;&lt;<b class="pun">%= post.title %</b>&gt;&lt;/<b class="tag">h1</b>&gt;
+          &lt;<b class="tag">h2</b>&gt;&lt;<b class="pun">%= post.subtitle %</b>&gt;&lt;/<b class="tag">h2</b>&gt;
+          &lt;<b class="tag">div</b> class<b class="pun">=”</b>content<b class="pun">”</b>&gt;
+            &lt;<b class="pun">%= post.content %</b>&gt;
+          &lt;/<b class="tag">div</b>&gt;
+        &lt;/<b class="tag">section</b>&gt;
+  .box
+    %h2.sample-haml .haml
+    %pre
+      :preserve
+        %<b class="tag">section</b>.<b class="tag">container</b>
+          %<b class="tag">h1</b><b class="pun">=</b> post.title
+          %<b class="tag">h2</b><b class="pun">=</b> post.subtitle
+          .<b class="tag">content</b>
+            <b class="pun">=</b> post.content
+
+.content.about
+  .box
+    %h2 Что это?
+    %p Haml (язык абстрактной разметки HTML) основывается на одном главном принципе: <em>разметка должна быть красивой</em>. Это не просто красота ради красоты, Haml ускоряет и упрощает создание шаблонов до истинного хокку.
+    %p <a href="http://www.unspace.ca">Unspace Interactive</a> и еще несколько других профессиональных разработчиков на Rails в своих проектах используют исключительно Haml, что позволяет им сосредоточиться на чистоте и читабельности кода, а также на скорости производства.
+    %p Уделите 5 минут прочтению <a href="/tutorial.html">руководства</a> и после переведите один из ERB шаблонов на Haml. Простота. Наслаждение. Смех. 20 минут спустя вы уже никогда не вернетесь назад.
+  %img{:src => "/assets/img/img-about.png", :alt => "О Haml"}/
+
+%ul.quotes
+  %li
+    %blockquote Эмоции, когда возвращаешься в Haml ( после erb): 1. Этот код выглядит симпатично... 2. Это безумие! 3. Эй, я помню, как это делается. 4. Выйдешь за меня?
+    = link_to '@eishe', 'http://twitter.com/eishe'
+  %li.alt
+    %blockquote Мы использовали Haml в каждом веб-проекте в течении последних 2 лет, и это сэкономило нам целую кучу времени. Просто блестяще.
+    = link_to '@edenspiekermann', 'http://twitter.com/edenspiekermann'
+  %li
+    %blockquote Мир станет намного лучше, если вы будете использовать больше Haml и меньше ERB. Перестаньте лениться и начинайте изучать уже сегодня. #ruby захватил мой&nbsp;мозг.
+    = link_to '@tobrien', 'http://twitter.com/tobrien'
+

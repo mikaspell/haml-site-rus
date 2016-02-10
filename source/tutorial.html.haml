@@ -1,0 +1,127 @@
+---
+title: Руководство по Haml
+---
+
+.content
+  %h1
+    %img{:src => "/assets/img/img-badge-tutorial.png", :alt => "Руководство"}/
+    Руководство
+  = partial 'partials/subnav'
+
+  :markdown
+    Прежде, чем мы начнем это руководство, я хочу прояснить одну вещь. После того, как вы все прочитаете, возьмите и переведите один из ваших файлов ERB на Haml. Просто попробуйте. Просто возьмите файл и начните удалять. Вам не нужно хранить файл, если вам не понравится, но после прочтения руководства попробуйте переделать один файл.
+
+    Haml выглядит странным первые 20 минут, но потом **вы будете быстрее**.
+
+    ## Начало работы
+
+    Во-первых, [скачайте Haml](/download.html) и [установите gem](/docs/yardoc/file.REFERENCE.html#using_haml) (это руководство подразумевает, что вы используете Rails - хотя его нужно использовать с другими фреймворками также, как и Haml). Haml - быстрая замена  ERB. Это означает, что любой файл, находящийся в папке `app/views`, может быть переведен на Haml простым изменением расширения файла.
+
+    <pre>app/views/account/login.html.erb &rarr; app/views/account/login.html.haml</pre>
+
+    Итак, когда вы смотрите эту страницу, вместо ERB шаблон обрабатывается Haml. Вы можете использовать одновременно и ERB и Haml на всем вашем проекте.
+
+    ## Как конвертировать
+
+    Давайте для начала возьмем что-то базовое в ERB и попробуем сконвертировать.
+
+  %h3 ERB
+  %pre
+    :escaped
+      <strong><%= item.title %></strong>
+
+  %h3 Haml
+  %pre.haml
+    :escaped
+      %strong= item.title
+
+  :markdown
+    В Haml перед названием тега ставится знак процента, например, `%strong`, `%div`, `%body`, `%html`; и так для любого другого тега. Затем после названия тега идет знак `=`, который сообщает Haml о том, что ему нужно выполнить Ruby код справа от знака и вывести его как контент тега слева от знака. В отличие от ERB, Haml автоматически определяет новые строки в контенте и после этого правильно форматирует тег.
+
+    ## Добавление атрибутов
+
+    С простыми тегами все ясно и понятно, но как добавлять к ним атрибуты?
+
+  %h3 HTML
+  %pre.html
+    :escaped
+      <strong class="code" id="message">Hello, World!</strong>
+
+  %h3 Haml
+  %pre.haml
+    :escaped
+      %strong{:class => "code", :id => "message"} Hello, World!
+
+  :markdown
+    Атрибуты - это всего лишь стандартный Ruby хеш. “code” атрибут `class`, а “message” атрибут `id`. Обратите внимание, что в этом примере мы не использовали `=`, поэтому “Hello, World!” определен как обычная строка, а не Ruby код.
+
+    Это наипростейший способ объявить тег в Haml, а поскольку `class` и `id` общие атрибуты и так как большинство дизайнеров (и разработчиков) знакомы с CSS, мы можем использовать аналогичное описание тега.
+
+  %h3 Haml
+  %pre.haml
+    :escaped
+      %strong.code#message Hello, World!
+
+  :markdown
+    Но и не только так, поскольку `div` - тег настолько общий, вы можете опускать объявление тега и получать его по умолчанию в виде `%div`.
+
+  %h3 Haml
+  %pre.haml
+    :escaped
+      .content Hello, World!
+
+  %h3 HTML
+  %pre.html
+    :escaped
+      <div class='content'>Hello, World!</div>
+
+  :markdown
+    ## Повышение сложности
+
+    Итак, что насчет немного более сложных случаев?
+
+  %h3 ERB
+  %pre
+    :escaped
+      <div class='item' id='item<%= item.id %>'>
+        <%= item.body %>
+      </div>
+
+  :markdown
+    Великолепная основа. Пример может быть частью фрагмента или еще чего-нибудь. Давайте сконвертируем его в Haml.
+
+  %h3 Haml
+  %pre.haml
+    :escaped
+      .item{:id => "item\#{item.id}"}= item.body
+
+  :markdown
+    Это весело! А теперь, давайте сделаем вложенность в Haml с помощью пробелов.
+
+  %h3 ERB
+  %pre
+    :escaped
+        <div id='content'>
+          <div class='left column'>
+            <h2>Welcome to our site!</h2>
+            <p><%= print_information %></p>
+          </div>
+          <div class="right column">
+            <%= render :partial => "sidebar" %>
+          </div>
+        </div>
+
+  %h3 Haml
+  %pre.haml
+    :escaped
+      #content
+        .left.column
+          %h2 Welcome to our site!
+          %p= print_information
+        .right.column
+          = render :partial => "sidebar"
+
+  :markdown
+    Посмотрите на это. Это не вызывает у вас улыбку?
+
+    Для более полной информации я очень рекомендую посетить [справку](/docs/yardoc/file.REFERENCE.html). Она содержит в себе маленькие хитрости, которые мы добавили в Haml для того, чтобы делать сайты было намного веселее.

@@ -1,0 +1,24 @@
+!!! 5
+<!--[if lte IE 8]><html lang="ru" class="ie"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="ru">
+<!--<![endif]-->
+%head
+  %meta{charset: 'utf-8'}
+  %meta{name: 'viewport', content: 'width=device-width,initial-scale=1.0'}
+  %meta{name: 'description', content: 'A Template Engine for Ruby on Rails'}
+  %meta{name: 'keywords', content: 'Haml, HAML, haml, Rails, Ruby, Ruby on Rails, Template, Template Engine, HTML Abstraction Markup Language'}
+  %meta{:name => "yandex-verification", :content => "695e9757669e08c3"}/
+  %title= current_page.data.title
+  %link{rel: 'shortcut icon', href: '/assets/img/favicon.ico', type: 'image/x-icon'}
+  = stylesheet_link_tag :site
+  / [if lte IE 8]
+    %script(src="/assets/js/javascripts/modernizr.js")
+%body
+  = partial 'partials/header'
+  .cell= yield
+  = partial 'partials/footer'
+
+  :javascript
+    (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter35258375 = new Ya.Metrika({ id:35258375, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");
+  <noscript><div><img src="https://mc.yandex.ru/watch/35258375" style="position:absolute; left:-9999px;" alt="" /></div></noscript> 
