@@ -1,10 +1,20 @@
+# If you do not have OpenSSL installed, change
+# the following line to use 'http://'
 source 'https://rubygems.org'
 
-gem "sass", '~> 3.2.19'
-gem "staticmatic"
-gem "maruku"
-gem "haml", "~> 4.1.0.beta.1"
-gem "haml-contrib"
-gem "compass", "0.11.7"
-gem "rake"
-gem "yard"
+# For faster file watcher updates on Windows:
+gem 'wdm', '~> 0.1.0', platforms: [:mswin, :mingw]
+
+# Windows does not come with time zone data
+gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
+
+# Middleman Gems
+gem 'middleman', '>= 4.0.0'
+gem 'middleman-livereload'
+gem 'middleman-syntax'
+gem 'middleman-compass', '>= 4.0.0'
+gem 'haml-contrib'
+gem 'redcarpet'
+gem 'sass'
+gem "middleman-deploy", "~> 1.0"
+gem 'middleman-robots'
